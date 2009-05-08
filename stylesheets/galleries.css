@@ -1,0 +1,62 @@
+#content img.gallery
+{
+    margin:0;
+    border:solid gray 2px;
+    z-index:101;
+}
+
+#content #buttonbar
+{
+    width:600px;
+    margin:0;
+    clear:both;
+    white-space:nowrap;
+    text-align:right;
+}
+
+
+#buttonbar li
+{
+    display:inline;
+    text-align:center;
+    margin:0 .25em;
+    list-style-type:none;
+    border: solid black 1px;
+    position:relative;
+    top:-1em;
+    background-color: white;
+    font-weight:bold;
+}
+
+#buttonbar li:hover, #buttonbar li.sfhover
+{
+    background-color:black;
+}
+
+#buttonbar a
+{
+    padding: 3px 10px;
+    text-decoration: none;
+    color:black;
+}
+
+#buttonbar li:hover a, #buttonbar li.sfhover a
+{
+    color:white;
+}
+
+
+div.caption
+{
+    text-align:left;
+    width:500px;
+    border: gray 1px solid;
+    background-color:white;
+    margin-bottom:3em;
+}
+
+p.count
+{
+    font-weight:bold;
+}
+    

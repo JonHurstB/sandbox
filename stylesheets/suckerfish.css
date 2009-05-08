@@ -1,0 +1,80 @@
+#navigation
+{
+    font-size:0.8em;
+    width:11em;
+    float:left;
+    background-color:yellow;
+    margin-bottom:2em;
+}
+
+#navigation #skipnav
+{
+    display:none;
+}
+
+#navigation ul, #navigation ul ul
+{
+    list-style: none;
+}
+
+#navigation ul
+{
+    z-index:1;
+}
+
+#navigation ul ul
+{
+    z-index:2;
+    position:relative;
+    left:-1px;
+}
+
+#navigation li
+{
+    position:relative;
+    float:left;
+    line-height:1.75em;
+    margin-bottom:-1px;
+}
+	
+/* second-level lists */
+#navigation li ul { 
+    position : absolute;
+    display:none;
+    margin-left : 11em;
+    margin-top : -1.75em;
+}
+
+#navigation ul li a {
+    width: 10em;
+    display : block;
+    color : black;
+    font-weight : bold;
+    text-decoration : none;
+    background-color : white;
+    border : 1px solid black;
+    padding : 0 0.5em;
+}
+	
+* html #navigation ul li a
+{
+    width:11em;
+}
+
+#navigation li a:hover {
+    color : white;
+    background-color : black;
+}
+
+
+#navigation li:hover ul, #navigation li.sfhover ul 
+{ /* lists nested under hovered list items */
+/*    left: auto;*/
+    display:block;
+}
+
+#navigation li a.current
+{
+    background-color:#E0E0FF;
+    color:black;
+}

@@ -1,0 +1,4 @@
+*.pyc
+site/*
+.backup.exclude
+.thumbnails/*
