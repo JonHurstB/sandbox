@@ -1,3 +1,7 @@
+pages/images
+pages/photos
+pages/stylesheets
+pages/script
 *.pyc
 site/*
 .backup.exclude
