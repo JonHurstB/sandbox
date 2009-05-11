@@ -23,5 +23,5 @@ site_structure=[
     ["School Trips", "node_trips.html",
      [["General", "school_trips_general.html"]]],
     ["Galleries", "node_galleries.html",
-     [["School tour", "school-tour-gallery.nojs.html"]]],
+     [["External tour", "gallery_school_tour.nojs.html"]]],
     ["Contact", "contact.html"]]

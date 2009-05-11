@@ -3,6 +3,8 @@ pages/photos
 pages/stylesheets
 pages/script
 pages/node_*
+pages/gallery_*
+script/gallery_*
 *.pyc
 site/*
 .backup.exclude
