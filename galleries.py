@@ -1,5 +1,5 @@
 structure=[
-    ["School Tour (external)", "school_tour", 
+    ["External Tour", "school_tour", 
     ["img_1142.jpg",
     "img_1062.jpg",
     "img_1095.jpg",
