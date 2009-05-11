@@ -2,7 +2,8 @@
 site_structure=[
     ["Home", "index.html"],
     ["About Us", "about_us.html",
-     [["Staff", "staff.html"],
+     [["School Map", "school-map.html"],
+      ["Staff", "staff.html"],
       ["Governors", "governors.html"],
       ["History", "history.html"],
       ["Mission","mission.html"],
