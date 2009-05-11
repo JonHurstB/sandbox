@@ -223,6 +223,8 @@ div.clear
 {
     margin:0em;
     padding:0em;
+    text-align:center;
+    clear:both;
 }
 
 #school-map #content img
@@ -230,9 +232,6 @@ div.clear
     position:relative;
     top:-2em;
     z-index:101;
-    display:block;
-    margin:0em auto;
-    clear:both;
 }
 
 #school-map #navigation
