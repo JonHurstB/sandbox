@@ -19,7 +19,7 @@ withjavascript_html_template="""\
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title>Churchill Primary School%(title)s</title>
+    <title>Churchill Primary School - %(title)s</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/> 
     <link rel="stylesheet" href="stylesheets/styles.css" type="text/css" />
     <link rel="stylesheet" href="stylesheets/galleries.css" type="text/css" />
@@ -72,7 +72,6 @@ nojavascript_html_template = """\
 <!--header-->
 <!--navigation-->
   <div id="content">
-<h1>%(title)s</h1>
 %(images)s
     </div>
 <!--footer-->
