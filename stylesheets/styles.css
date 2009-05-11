@@ -240,3 +240,27 @@ div.clear
     z-index:102;
 }
 
+@media print 
+{ 
+  #content
+  {
+    font-size: 11pt;
+    font-family: times new roman, serif;
+  }
+
+  #content td /*td doesn't always pick up cascaded font characteristics*/
+  {
+    font-family: times new roman, serif;
+    font-size:11pt;
+    }
+
+  #content
+  {
+      margin-left:0em;
+  }
+ 
+  #navigation, #header, #footer
+  { 
+    display: none;
+  }
+}
