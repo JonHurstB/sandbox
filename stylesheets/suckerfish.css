@@ -35,7 +35,7 @@
     line-height:1.75em;
     margin-bottom:-1px;
 }
-	
+
 /* second-level lists */
 #navigation li ul { 
     position : absolute;
@@ -54,10 +54,20 @@
     border : 1px solid black;
     padding : 0 0.5em;
 }
+
+#navigation ul ul li a 
+{
+    width: 11em;
+}
 	
 * html #navigation ul li a
 {
     width:11em;
+}
+
+* html #navigation ul ul li a
+{
+    width:12em;
 }
 
 #navigation li a:hover {
