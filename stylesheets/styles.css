@@ -218,3 +218,26 @@ div.clear
 
 #ChangeDetection {border:blue 1px solid; padding:1em;margin:1em;}
 #ChangeDetection div {text-align:center;}
+
+#school-map #content
+{
+    margin:0em;
+    padding:0em;
+}
+
+#school-map #content img
+{
+    position:relative;
+    top:-2em;
+    z-index:101;
+    display:block;
+    margin:0em auto;
+    clear:both;
+}
+
+#school-map #navigation
+{
+    position:relative;
+    z-index:102;
+}
+
