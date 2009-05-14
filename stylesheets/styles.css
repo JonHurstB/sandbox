@@ -188,9 +188,9 @@ div.urgent-notice
     border-right:solid black 2px;
 }
 
-#governors #content th
+#content th
 {
-    width:5em;
+    width:7em;
 }
 
 * html #content td
