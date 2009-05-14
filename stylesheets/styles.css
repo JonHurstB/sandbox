@@ -175,35 +175,22 @@ div.urgent-notice
     margin: 1em 2em 2em 2em;
 }
 
-#content col.heading
-{
-    background-color:#E0E0FF;
-    border-right:solid black 2px;
-}
 
-#content table td
+#content table td, #content table th
 {
     border: solid black 1px;
     padding: 0.5em 1em;
 }
 
-#content table.committee-members td.photo
+#content th
 {
-    text-align:center;
-    background-color:black;
-    padding:0
-}
-
-#content table.committee-members img
-{
-    margin:0 auto;
-}
-
-#content table.committee-members td.committee-name
-{
-    font-size:1.1em;
-    font-weight:bold;
     background-color:#E0E0FF;
+    border-right:solid black 2px;
+}
+
+#governors #content th
+{
+    width:5em;
 }
 
 * html #content td
