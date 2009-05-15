@@ -193,7 +193,7 @@ div.urgent-notice
     width:7em;
 }
 
-* html #content td
+* html #content td, * html #content th
 {
     font-size:0.8em;
 }
