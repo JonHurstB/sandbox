@@ -9,8 +9,11 @@ header = """\
 
 footer = """\
 <div id="footer">
-  <img src="images/awards.png" alt="awards"/>
-  <p>©2009 All Rights Reserved | <a href="privacy.html">PRIVACY POLICY</a> | <a href="terms-of-use.html">TERMS OF USE</a></p>
+  <img id="awards" src="images/awards.png" alt="awards"/>
+  <p id="w3c"><a href="http://validator.w3.org/check?uri=referer"><img
+        src="images/valid-xhtml10-blue.png"
+        alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>©2009 All Rights Reserved | <a href="privacy.html">PRIVACY POLICY</a> | <a href="terms-of-use.html">TERMS OF USE</a></p>
 </div>
 """
 

@@ -54,15 +54,28 @@ body
     height:51px;
 }
 
-#footer img
+#footer #awards
 {
     float:right;
+}
+
+#footer #w3c
+{
+    float:left;
+    position:relative;
+    left:3px;
+    top:18px;
+}
+
+#footer #w3c img
+{
+    border:none;
 }
 
 #footer p
 {
     position:relative;
-    top:33%;
+    top:25%;
 }
 
 #footer a
