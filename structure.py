@@ -29,4 +29,4 @@ site_structure=[
      [["External tour", "gallery_school_tour.nojs.html"]]],
     ["SWGfL Merlin", "node_merlin.html",
      [["Log in", "https://secure.merlin.swgfl.org.uk/"]]],
-    ["Contact", "contact.html"]]
+    ["Contact Us", "contact.html"]]
