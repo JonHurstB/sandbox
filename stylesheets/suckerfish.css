@@ -19,6 +19,7 @@
 #navigation li
 {
     position:relative;
+    float:left; /*fix for IE6 bug*/
     z-index:1;
     line-height:1.75em;
     margin-bottom:-1px;
