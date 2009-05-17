@@ -53,6 +53,7 @@
 
 #navigation li:hover, #navigation li.sfhover
 {
+    min-height:0;/*fix for IE7 hover bug*/
     z-index:2;
 }
 
