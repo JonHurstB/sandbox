@@ -1,3 +1,20 @@
+/*Galleries are vulnerable to IE float drop bug - therefore we will override 
+to use absolute positioning since we know that photo height is greater than 
+menu height*/
+
+#page
+{
+    position:relative;
+}
+
+#navigation
+{
+    position:absolute;
+    top:104px;/*matches header height*/
+    left:0;
+    margin-top:2em;/*matches header bottom margin*/
+}
+
 #content img.gallery
 {
     margin:0;
@@ -7,6 +24,8 @@
 
 #content #buttonbar
 {
+    position:relative;/*IE6 fix*/
+    top:0;/*IE6 fix*/
     width:600px;
     margin:0;
     clear:both;
