@@ -11,40 +11,29 @@
     display:none;
 }
 
-#navigation ul, #navigation ul ul
-{
-    list-style: none;
-}
-
 #navigation ul
 {
-    z-index:1;
-}
-
-#navigation ul ul
-{
-    z-index:2;
-    position:relative;
-    left:-1px;
+    list-style: none;
 }
 
 #navigation li
 {
     position:relative;
-    float:left;
+    z-index:1;
     line-height:1.75em;
     margin-bottom:-1px;
 }
 
-/* second-level lists */
 #navigation li ul { 
     position : absolute;
+    top: 0px;
+    left: 10em;
     display:none;
-    margin-left : 11em;
-    margin-top : -1.75em;
+/*    margin-left : 10em;*/
+/*    margin-top : -1.9em;*/
 }
 
-#navigation ul li a {
+#navigation a {
     width: 10em;
     display : block;
     color : black;
@@ -55,19 +44,15 @@
     padding : 0 0.5em;
 }
 
-#navigation ul ul li a 
-{
-    width: 11em;
-}
-	
-* html #navigation ul li a
+* html #navigation a /*workaround for IE6 Box model bug*/
 {
     width:11em;
 }
 
-* html #navigation ul ul li a
+
+#navigation li:hover, #navigation li.sfhover
 {
-    width:12em;
+    z-index:2;
 }
 
 #navigation li a:hover {
@@ -77,13 +62,12 @@
 
 
 #navigation li:hover ul, #navigation li.sfhover ul 
-{ /* lists nested under hovered list items */
-/*    left: auto;*/
+{
     display:block;
 }
 
 #navigation li a.current
 {
-    background-color:#E0E0FF;
+    background-color:#E0F0FF;
     color:black;
 }
