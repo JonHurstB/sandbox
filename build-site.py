@@ -23,15 +23,19 @@ def build_list(structure, filename):
     str = "<ul>\n"
     current_found = False
     for e in structure:
+        classes = []
         substr, is_current = "", False
         if len(e) == 3:#i.e. a sub-menu exists
             substr, is_current = build_list(e[2], filename)
+            classes.append("node")
         if filename.split(".")[0] == e[1].split(".")[0]:
             current_found = True
             is_current = True
-        class_str = ""
         if is_current:
-            class_str = "class=\"current\""
+            classes.append("current")
+        class_str = ""
+        if classes:
+            class_str = "class=\"%s\"" % " ".join(classes)
         str += "<li><a %s href=\"%s\">%s</a>" % (class_str, e[1], e[0])
         if substr:
             str += "\n" + substr

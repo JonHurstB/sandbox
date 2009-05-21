@@ -25,6 +25,11 @@
     margin-bottom:-1px;
 }
 
+#navigation a.node
+{
+    background:url(../images/node.gif) center right no-repeat;
+}
+
 #navigation li ul { 
     position : absolute;
     top: 0px;
