@@ -208,6 +208,11 @@ div.urgent-notice
     width:7em;
 }
 
+#content thead th
+{
+    width:auto;
+}
+
 * html #content td, * html #content th
 {
     font-size:0.8em;
