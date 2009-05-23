@@ -1,5 +1,5 @@
 #!/bin/bash
 
 mkdir site
-ln -s ../stylesheets ../script ../images ../photos site/
-ln -s ../stylesheets ../script ../images ../photos pages/
+ln -s ../stylesheets ../script ../images ../photos ../downloads site/
+ln -s ../stylesheets ../script ../images ../photos ../downloads pages/
