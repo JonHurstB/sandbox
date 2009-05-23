@@ -242,13 +242,21 @@ div.clear
     z-index:102;
 }
 
-@media print 
-{ 
-  #content
-  {
-    font-size: 11pt;
-    font-family: times new roman, serif;
-  }
+#content div.policy-dates
+{
+    border: 1px gray solid;
+    width:17em;
+    color:gray;
+    margin:0 0 0 auto;
+}
+
+#content div.policy-dates ul
+{
+    list-style:none;
+    margin:0 2em;
+}
+
+@media print { #content { font-size: 11pt; font-family: times new roman, serif; }
 
   #content td /*td doesn't always pick up cascaded font characteristics*/
   {
