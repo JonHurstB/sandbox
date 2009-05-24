@@ -38,6 +38,7 @@ node_page = """\
 <!--header--> 
 <!--navigation-->
     <div id="content">
+       <div id="strut"></div>
        <h1>%(title)s</h1>
        <ul>
 %(list)s

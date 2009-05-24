@@ -1,9 +1,11 @@
 #navigation
 {
-    font-size:0.8em;
+    position:absolute;
+    top:104px;/*matches header height*/
+    left:0;
+    margin-top:2em;/*matches header bottom margin*/
     width:11em;
-    float:left;
-    margin-bottom:2em;
+    font-size:1em;
 }
 
 #navigation #skipnav
@@ -35,8 +37,6 @@
     top: 0px;
     left: 10em;
     display:none;
-/*    margin-left : 10em;*/
-/*    margin-top : -1.9em;*/
 }
 
 #navigation a {

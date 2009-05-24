@@ -15,13 +15,28 @@ body
     background-color:white;
 }
 
+#strut
+{
+    float:right;
+    width:0px;
+    height:20em;
+}
+
+#page
+{
+    position:relative;
+    margin:auto;
+    max-width:65em;
+    min-width:40em;
+    font-size:0.8em;
+}
+
 #header
 {
-    font-size:0.8em;
+    font-size:1em;
     background-image: url(../images/header.png);
     background-repeat:repeat-y;
     height:104px;
-    margin-bottom:2em;
     overflow:hidden;
 }
 
@@ -46,12 +61,11 @@ body
 #footer
 {
     clear:both;
-    font-size:0.8em;
+    font-size:1em;
     background-image: url(../images/header.png);
     background-repeat:repeat-y;
     color:yellow;
     text-align:center;
-    margin-top:4em;
     height:51px;
     overflow:hidden;
 }
@@ -85,18 +99,11 @@ body
     color:yellow;
 }
 
-#page
-{
-    margin:auto;
-    max-width:55em;
-}
-
 	
 #content
 {
-    font-size:0.8em;
-    margin-left:12em;
-    padding:0em 2em;
+    font-size:1em;
+    padding:2em 2em 2em 14em;
 }
 
 #content h1
@@ -237,13 +244,12 @@ div.clear
 #school-map #content img
 {
     position:relative;
-    top:-2em;
+    margin: 2em 0em;
     z-index:101;
 }
 
 #school-map #navigation
 {
-    position:relative;
     z-index:102;
 }
 
