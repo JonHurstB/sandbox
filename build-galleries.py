@@ -30,7 +30,6 @@ withjavascript_html_template="""\
   <body>
   <div id="page">
 <!--header-->
-<!--navigation-->
   <div id="content">
     <noscript>
       <p>This photo browser requires javascript. A <a href="%(nojavascript_html_file)s">no javascript</a> version is
@@ -48,6 +47,7 @@ withjavascript_html_template="""\
       %(first_caption)s
     </div>
     </div>
+<!--navigation-->
 <!--footer-->
   </div>
   </body>
@@ -70,10 +70,10 @@ nojavascript_html_template = """\
   <body>
     <div id="page">
 <!--header-->
-<!--navigation-->
   <div id="content">
 %(images)s
     </div>
+<!--navigation-->
 <!--footer-->
     </div>
   </body>

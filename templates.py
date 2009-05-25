@@ -36,13 +36,13 @@ node_page = """\
   <body>
     <div id="page">
 <!--header--> 
-<!--navigation-->
     <div class="short" id="content">
        <h1>%(title)s</h1>
        <ul>
 %(list)s
        </ul>
     </div>
+<!--navigation-->
 <!--footer-->
     </div>
   </body>

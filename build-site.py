@@ -12,7 +12,6 @@ site_dir="site/"
 def build_nav(filename):
     """Builds the navigation div for a given FILENAME"""
     return ("<div id=\"navigation\">\n"
-            "<a id=\"skipnav\" href=\"#content\">Skip navigation</a>"
             "%s\n</div>\n" %
             build_list(structure.site_structure, filename)[0])
 
