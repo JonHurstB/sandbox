@@ -29,7 +29,8 @@ site_structure=[
     ["Galleries", "node_galleries.html",
      [["External tour", "gallery_school_tour.nojs.html"]]],
     ["Downloads", "node_download.html",
-     [["Welcome Pack", "downloads/welcome-pack.pdf"]]],
+     [["Welcome Pack", "downloads/welcome-pack.pdf"],
+      ["Topic Webs", "topic-webs.html"]]],
     ["SWGfL Merlin", "node_merlin.html",
      [["Log in", "https://secure.merlin.swgfl.org.uk/"]]],
     ["Contact Us", "contact.html"]]
