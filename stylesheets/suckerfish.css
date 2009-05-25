@@ -24,7 +24,7 @@
 
 #navigation a.node
 {
-    background:url(../images/node.gif) center right no-repeat;
+    background:white url(../images/node.gif) center right no-repeat;
 }
 
 #navigation li ul { 
@@ -33,6 +33,7 @@
     left: 10em;
     display:none;
 }
+
 
 #navigation a {
     width: 10em;
@@ -63,9 +64,15 @@
 }
 
 
-#navigation li:hover ul, #navigation li.sfhover ul 
+#navigation li:hover ul, #navigation li:hover li:hover ul, 
+#navigation li.sfhover ul, #navigation li.sfhover li.sfhover ul
 {
     display:block;
+}
+
+#navigation li:hover ul ul, #navigation li.sfhover ul ul
+{
+    display:none;
 }
 
 #navigation li a.current

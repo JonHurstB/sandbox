@@ -47,9 +47,9 @@ def build_node_page(structure):
     str = ""
     for node in structure:
         if len(node) == 3:#i.e. a sub menu exists
+            build_node_page(node[2])
             for subnode in node[2]:
                 str += "<li><a href=\"%s\">%s</a></li>\n" % (subnode[1], subnode[0])
-                build_node_page(subnode)
             print "Creating", node[1]
             open(source_dir + node[1], "w").write(
                 templates.node_page % {"title": node[0], "list": str})
