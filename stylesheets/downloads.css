@@ -28,3 +28,15 @@
 {
     border: none;
 }
+
+
+#content table.download
+{
+    margin:0 0 1em auto;
+    border:1px gray solid;
+}
+
+* html #content div.download-box
+{/* IE6 does not respect margin auto */
+    text-align:right;
+}
