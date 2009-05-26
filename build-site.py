@@ -28,9 +28,9 @@ def build_list(structure, filename):
             substr, is_current = build_list(e[2], filename)
             classes.append("node")
         if filename.split(".")[0] == e[1].split(".")[0]:
-            current_found = True
             is_current = True
         if is_current:
+            current_found = True
             classes.append("current")
         class_str = ""
         if classes:
@@ -64,3 +64,5 @@ for f in glob.glob(source_dir + "*.html"):
         s = s.replace(*i)
     s = s.replace("<!--navigation-->", build_nav(os.path.basename(f)))
     open(site_dir + os.path.basename(f), "w").write(s)
+
+#build_list(structure.site_structure[3][2], "topic-web-year-f.html")
