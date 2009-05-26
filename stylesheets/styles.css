@@ -164,6 +164,12 @@ body
     margin-left:3em;
 }
 
+#content li ul, #content li ol
+{
+    margin:0 0 0 1.5em;
+}
+
+
 #content p.newsletter-inav
 {
     text-align:right;
