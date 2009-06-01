@@ -18,7 +18,6 @@
     position:relative;
     float:left; /*fix for IE6 bug*/
     z-index:1;
-    line-height:1.75em;
     margin-bottom:-1px;
 }
 
@@ -43,7 +42,7 @@
     text-decoration : none;
     background-color : white;
     border : 1px solid black;
-    padding : 0 0.5em;
+    padding : 0.25em 0.5em;
 }
 
 * html #navigation a /*workaround for IE6 Box model bug*/
