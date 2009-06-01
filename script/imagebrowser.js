@@ -2,6 +2,7 @@ function set_photo()
 {
     document.getElementById("photo").src = photos[current_photo]
     var count = "<p class=\"count\">" + (current_photo + 1) + " of " + photos.length + "</p>"
+    document.getElementById("photo").alt = (current_photo + 1) + " of " + photos.length
     document.getElementById("caption").innerHTML = count + captions[current_photo]
 }
 

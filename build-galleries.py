@@ -35,7 +35,7 @@ withjavascript_html_template="""\
       <p>This photo browser requires javascript. A <a href="%(nojavascript_html_file)s">no javascript</a> version is
       available.</p>
     </noscript>
-    <img class="gallery" id="photo" src="%(first_photo)s" alt="test"/>
+    <img class="gallery" id="photo" src="%(first_photo)s" alt="1 of %(count)s"/>
     <ul id="buttonbar">
       <li><a href="#" onclick='return first_photo()'>First</a></li>
       <li><a href="#" onclick='return prev_photo()'>Prev</a></li>
@@ -82,7 +82,7 @@ nojavascript_html_template = """\
 
 
 nojavascript_image_template="""\
-    <img class="gallery" src="%(photo)s" alt="test"/>
+    <img class="gallery" src="%(photo)s" alt="%(count)s"/>
     <div class="caption">
       <p class="count">%(count)s</p>
       %(caption)s
