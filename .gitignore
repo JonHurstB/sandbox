@@ -11,3 +11,4 @@ script/gallery_*
 site/*
 .backup.exclude
 .thumbnails/*
+downloads/prospectus.pdf
