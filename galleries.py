@@ -40,3 +40,29 @@ captions.update({
             ("<p>Each school had to offer their own presentation on 'celebrating what it means to be a C of E school"
              " in this Diocese'. Year 5 created a rap.</p>")
 })
+
+#North Somerset Music Department
+
+structure.append(
+    ["N. Somerset Music Department", "n-somerset-music",
+     ["dgm3cn8j_59gf7zjvdq_b.jpg",
+      "dgm3cn8j_60cr3crwdk_b.jpg",
+      "dgm3cn8j_61d7bs4r3n_b.jpg",
+      "dgm3cn8j_62gc37s4kz_b.jpg",
+      "dgm3cn8j_63htrjzjch_b.jpg",
+      "dgm3cn8j_64cfsrshcf_b.jpg"]
+            ])
+
+captions.update({
+            "dgm3cn8j_59gf7zjvdq_b.jpg":
+                "<p>North Somerset Music Department sharing their extensive musical expertise playing different instruments</p>",
+            "dgm3cn8j_60cr3crwdk_b.jpg":
+                "<p>A variety of well known Television theme tunes were played. Which one was this, Eastenders or Match of the Day?</p>",
+            "dgm3cn8j_61d7bs4r3n_b.jpg":
+                "<p>Even the recorder was included!</p>",
+            "dgm3cn8j_62gc37s4kz_b.jpg":
+                "<p>Comparing different instruments</p>",
+            "dgm3cn8j_63htrjzjch_b.jpg":
+                "<p>This looks an interesting instrument - the common garden hose!</p>",
+            "dgm3cn8j_64cfsrshcf_b.jpg":
+                "<p>Actions by the pupils as well!</p>"})

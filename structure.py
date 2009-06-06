@@ -33,6 +33,8 @@ site_structure=[
         ["Bishop's Service", "gallery_bishops_service.nojs.html"]]],
       ["Year 6", "node_class-6.html",
        [["Topic web", "topic-web-year-6.html"]]]]],
+    ["Events", "node_events.html",
+     [["North Somerset Music Dept visit", "gallery_n-somerset-music.nojs.html"]]],
     ["Policies", "node_policies.html",
      [["Homework", "homework.html"],
       ["Behaviour", "behaviour.html"],
