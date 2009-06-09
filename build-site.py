@@ -1,68 +1,68 @@
 #!/usr/bin/python
 
+from xml.etree import ElementTree
 import glob
 import os
-import structure
-import templates
 
 source_dir="pages/"
 site_dir="site/"
+template_page = "templates/template.html"
+structure_page = "structure.html"
 
+def process_nodes(element, filename):
+    """"Specialises the navigation div for a particular filename.
 
-def build_nav(filename):
-    """Builds the navigation div for a given FILENAME"""
-    return ("<div id=\"navigation\">\n"
-            "%s\n</div>\n" %
-            build_list(structure.site_structure, filename)[0])
-
-
-def build_list(structure, filename):
-    """Recursively called list builder that monitors whether filename is in the current directory branch. Returns a
-    tuple consisting of the list and a boolean indicating whether filename was found"""
-    str = "<ul>\n"
-    current_found = False
-    for e in structure:
+    The class attrib is first removed from all anchors to allow re-use, then Class 'current' is added to the anchor
+    containing the filename and all its parent anchors. Class 'node' is added to any anchor with a sub-menu."""
+    parent_current = False
+    for e in element: #all the <li> tags
+        current = False
         classes = []
-        substr, is_current = "", False
-        if len(e) == 3:#i.e. a sub-menu exists
-            substr, is_current = build_list(e[2], filename)
+        anchor = e.find("{http://www.w3.org/1999/xhtml}a")
+        if "class" in anchor.attrib:
+            del(anchor.attrib["class"])
+        sublist = e.find("{http://www.w3.org/1999/xhtml}ul")
+        if sublist:
+            current = process_nodes(sublist, filename)
             classes.append("node")
-        if filename.split(".")[0] == e[1].split(".")[0]:
-            is_current = True
-        if is_current:
-            current_found = True
+        if current or filename.split(".")[0] == anchor.get("href").split(".")[0]:
             classes.append("current")
-        class_str = ""
+            parent_current = True
         if classes:
-            class_str = "class=\"%s\"" % " ".join(classes)
-        str += "<li><a %s href=\"%s\">%s</a>" % (class_str, e[1], e[0])
-        if substr:
-            str += "\n" + substr
-        str += "</li>\n"
-    str += "</ul>"
-    return str, current_found
+            anchor.set("class", " ".join(classes))
+    return parent_current
 
 
-def build_node_page(structure):
-    str = ""
-    for node in structure:
-        if len(node) == 3:#i.e. a sub menu exists
-            build_node_page(node[2])
-            for subnode in node[2]:
-                str += "<li><a href=\"%s\">%s</a></li>\n" % (subnode[1], subnode[0])
-            print "Creating", node[1]
-            open(source_dir + node[1], "w").write(
-                templates.node_page % {"title": node[0], "list": str})
+def build_node_pages(element):
+    """"Builds the pages displayed if an anchor leading to a sub-menu is clicked rather than hovered"""
+    template = file(template_page).read()
+    for e in element: #all the <li> tags
         str = ""
-            
+        anchor = e.find("{http://www.w3.org/1999/xhtml}a")
+        sublist = e.find("{http://www.w3.org/1999/xhtml}ul")
+        if sublist:
+            build_node_pages(sublist)
+            for se in sublist:
+                se_anchor = se.find("{http://www.w3.org/1999/xhtml}a")
+                str += '<li><a href="%s">%s</a></li>\n' % (se_anchor.get("href"), se_anchor.text)
+            print "Creating", source_dir + anchor.get("href")
+            output = template.replace("<!--Add title here-->", anchor.text)
+            output = output.replace("<!--Add content here-->",
+                                      "<h1>%s</h1>\n<ul>\n%s</ul>\n" % (anchor.text, str))
+            open(source_dir + anchor.get("href"), "w").write(output)
+                        
 
-build_node_page(structure.site_structure)
-for f in glob.glob(source_dir + "*.html"):
-    print f
-    s = file(f).read()
-    for i in templates.includes:
-        s = s.replace(*i)
-    s = s.replace("<!--navigation-->", build_nav(os.path.basename(f)))
-    open(site_dir + os.path.basename(f), "w").write(s)
 
-#build_list(structure.site_structure[3][2], "topic-web-year-f.html")
+if __name__ == "__main__":
+    structure, iddict = ElementTree.XMLID(file(structure_page).read())
+    build_node_pages(iddict["navigation"].find("{http://www.w3.org/1999/xhtml}ul"))
+    for f in glob.glob(source_dir + "*.html"):
+        process_nodes(iddict["navigation"].find("{http://www.w3.org/1999/xhtml}ul"), os.path.basename(f))
+        s = file(f).read()
+        for r in ("header", "footer", "navigation"):
+            s = s.replace("<!--%s-->" % r, ElementTree.tostring(iddict[r], "utf-8"))
+        s = s.replace("html:", "")
+        outfile = site_dir + os.path.basename(f)
+        print "Creating", outfile
+        open(outfile , "w").write(s)
+
