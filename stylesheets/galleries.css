@@ -20,6 +20,15 @@ menu height*/
     text-align:right;
 }
 
+#content.portrait img.gallery
+{
+    margin-left:50px;
+}
+
+#content.portrait #buttonbar
+{
+    width:500px;
+}
 
 #buttonbar li
 {

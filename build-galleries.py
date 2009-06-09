@@ -32,7 +32,7 @@ withjavascript_html_template="""\
   <body>
   <div id="page">
 <!--header-->
-  <div id="content">
+  <div class="%(aspect)s" id="content">
     <noscript>
       <p>This photo browser requires javascript. A <a href="%(nojavascript_html_file)s">no javascript</a> version is
       available.</p>
@@ -72,7 +72,7 @@ nojavascript_html_template = """\
   <body>
     <div id="page">
       <!--header-->
-      <div id="content">
+      <div class="%(aspect)s" id="content">
 %(images)s
       </div>
       <!--navigation-->
@@ -95,7 +95,7 @@ nojavascript_image_template="""\
 def build_javascript(gallery):
     return javascript_template % {
         "photos": "\",\n\"".join([photos_directory + x[0] for x in gallery[2]]),
-        "captions": "\",\n\"".join([x[1].replace("\n", "\\\n ") for x in gallery[2]])}
+        "captions": "\",\n\"".join([x[1].replace("\n", "\\\n ").replace("\"", "\\\"") for x in gallery[2]])}
              
            
 def build_withjavascript_html(gallery, javascript_file, nojavascript_html_file):
@@ -105,7 +105,8 @@ def build_withjavascript_html(gallery, javascript_file, nojavascript_html_file):
         "javascript_file": script_directory + javascript_file,
         "nojavascript_html_file": nojavascript_html_file,
         "first_photo": photos_directory + gallery[2][0][0],
-        "first_caption": gallery[2][0][1]}
+        "first_caption": gallery[2][0][1],
+        "aspect": gallery[3]}
 
 
 def build_nojavascript_html(gallery, withjavascript_html_file):
@@ -118,7 +119,8 @@ def build_nojavascript_html(gallery, withjavascript_html_file):
     return nojavascript_html_template % {
         "title": gallery[0],
         "with_javascript_html": withjavascript_html_file,
-        "images": images}
+        "images": images,
+        "aspect": gallery[3]}
             
 
 def process_source(filename):
@@ -126,7 +128,7 @@ def process_source(filename):
     body = ElementTree.parse(filename).find("{http://www.w3.org/1999/xhtml}body")
     for div in body:
         files = []
-        retval.append([div.find("{http://www.w3.org/1999/xhtml}h1").text, div.get("id"), files])
+        retval.append([div.find("{http://www.w3.org/1999/xhtml}h1").text, div.get("id"), files, div.get("class")])
         for tag in div:
             if tag.tag == "{http://www.w3.org/1999/xhtml}h1":
                 continue
