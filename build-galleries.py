@@ -1,12 +1,14 @@
 #!/usr/bin/python
 #coding=utf-8
 
-import galleries
+from xml.etree import ElementTree
 
 script_directory = "script/"
 pages_directory = "pages/"
 photos_directory = "photos/"
 gallery_prefix = "gallery_"
+source = "photos/galleries.html"
+
 
 javascript_template="""\
 var photos = [\n\"%(photos)s\"\n]
@@ -47,8 +49,8 @@ withjavascript_html_template="""\
       %(first_caption)s
     </div>
     </div>
-<!--navigation-->
-<!--footer-->
+    <!--navigation-->
+    <!--footer-->
   </div>
   </body>
 </html>
@@ -69,12 +71,12 @@ nojavascript_html_template = """\
   </head>
   <body>
     <div id="page">
-<!--header-->
-  <div id="content">
+      <!--header-->
+      <div id="content">
 %(images)s
-    </div>
-<!--navigation-->
-<!--footer-->
+      </div>
+      <!--navigation-->
+      <!--footer-->
     </div>
   </body>
 </html>
@@ -82,18 +84,18 @@ nojavascript_html_template = """\
 
 
 nojavascript_image_template="""\
-    <img class="gallery" src="%(photo)s" alt="%(count)s"/>
-    <div class="caption">
-      <p class="count">%(count)s</p>
-      %(caption)s
-    </div>
+        <img class="gallery" src="%(photo)s" alt="%(count)s"/>
+        <div class="caption">
+          <p class="count">%(count)s</p>
+          %(caption)s
+        </div>
 """
 
 
 def build_javascript(gallery):
     return javascript_template % {
-        "photos": "\",\n\"".join([photos_directory + x for x in gallery[2]]),
-        "captions": "\",\n\"".join([galleries.captions[x] for x in gallery[2]])}
+        "photos": "\",\n\"".join([photos_directory + x[0] for x in gallery[2]]),
+        "captions": "\",\n\"".join([x[1].replace("\n", "\\\n ") for x in gallery[2]])}
              
            
 def build_withjavascript_html(gallery, javascript_file, nojavascript_html_file):
@@ -102,16 +104,16 @@ def build_withjavascript_html(gallery, javascript_file, nojavascript_html_file):
         "count": len(gallery[2]),
         "javascript_file": script_directory + javascript_file,
         "nojavascript_html_file": nojavascript_html_file,
-        "first_photo": photos_directory + gallery[2][0],
-        "first_caption": galleries.captions[gallery[2][0]]}
+        "first_photo": photos_directory + gallery[2][0][0],
+        "first_caption": gallery[2][0][1]}
 
 
 def build_nojavascript_html(gallery, withjavascript_html_file):
     images=""
-    for count,image in enumerate(gallery[2]):
+    for count, (image, caption) in enumerate(gallery[2]):
         images += nojavascript_image_template % {
             "photo": photos_directory + image,
-            "caption": galleries.captions[image],
+            "caption": caption,
             "count": str(count + 1) + " of " + str(len(gallery[2]))}
     return nojavascript_html_template % {
         "title": gallery[0],
@@ -119,8 +121,30 @@ def build_nojavascript_html(gallery, withjavascript_html_file):
         "images": images}
             
 
+def process_source(filename):
+    retval = []
+    body = ElementTree.parse(filename).find("{http://www.w3.org/1999/xhtml}body")
+    for div in body:
+        files = []
+        retval.append([div.find("{http://www.w3.org/1999/xhtml}h1").text, div.get("id"), files])
+        for tag in div:
+            if tag.tag == "{http://www.w3.org/1999/xhtml}h1":
+                continue
+            elif tag.tag == "{http://www.w3.org/1999/xhtml}img":
+                files.append([tag.get("src"), ""])
+            else:
+                files[-1][1] = files[-1][1] + clean_string(ElementTree.tostring(tag))
+    return retval
 
-for gallery in galleries.structure:
+
+def clean_string(str):
+    return str.replace(
+        ' xmlns:html="http://www.w3.org/1999/xhtml"', "").replace(
+        'html:', "").rstrip()
+
+
+
+for gallery in process_source(source):
     print "Building", gallery[0]
     javascript_file = gallery_prefix + gallery[1] + ".js"
     nojavascript_html_file = gallery_prefix + gallery[1] + ".nojs.html"
