@@ -6,6 +6,7 @@
     margin-top:2em;/*matches header bottom margin*/
     width:11em;
     font-size:1em;
+    z-index:1000;
 }
 
 #navigation ul

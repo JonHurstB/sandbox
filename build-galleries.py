@@ -13,6 +13,7 @@ source = "photos/galleries.html"
 javascript_template="""\
 var photos = [\n\"%(photos)s\"\n]
 var captions = [\n\"%(captions)s\"\n]
+var aspects = [\n\"%(aspects)s\"\n]
 var current_photo = 0
 """
 
@@ -32,13 +33,13 @@ withjavascript_html_template="""\
   <body>
   <div id="page">
 <!--header-->
-  <div class="%(aspect)s" id="content">
+  <div class="gallery" id="content">
     <noscript>
       <p>This photo browser requires javascript. A <a href="%(nojavascript_html_file)s">no javascript</a> version is
       available.</p>
     </noscript>
-    <img class="gallery" id="photo" src="%(first_photo)s" alt="1 of %(count)s"/>
-    <ul id="buttonbar">
+    <img class="%(aspect)s" id="photo" src="%(first_photo)s" alt="1 of %(count)s"/>
+    <ul class="%(aspect)s" id="buttonbar">
       <li><a href="#" onclick='return first_photo()'>First</a></li>
       <li><a href="#" onclick='return prev_photo()'>Prev</a></li>
       <li><a href="#" onclick='return next_photo()'>Next</a></li>
@@ -72,7 +73,7 @@ nojavascript_html_template = """\
   <body>
     <div id="page">
       <!--header-->
-      <div class="%(aspect)s" id="content">
+      <div class="gallery" id="content">
 %(images)s
       </div>
       <!--navigation-->
@@ -84,7 +85,7 @@ nojavascript_html_template = """\
 
 
 nojavascript_image_template="""\
-        <img class="gallery" src="%(photo)s" alt="%(count)s"/>
+        <img class="%(aspect)s" src="%(photo)s" alt="%(count)s"/>
         <div class="caption">
           <p class="count">%(count)s</p>
           %(caption)s
@@ -95,7 +96,8 @@ nojavascript_image_template="""\
 def build_javascript(gallery):
     return javascript_template % {
         "photos": "\",\n\"".join([photos_directory + x[0] for x in gallery[2]]),
-        "captions": "\",\n\"".join([x[1].replace("\n", "\\\n ").replace("\"", "\\\"") for x in gallery[2]])}
+        "captions": "\",\n\"".join([x[1].replace("\n", "\\\n ").replace("\"", "\\\"") for x in gallery[2]]),
+        "aspects": "\",\n\"".join([x[2] for x in gallery[2]]) }
              
            
 def build_withjavascript_html(gallery, javascript_file, nojavascript_html_file):
@@ -106,21 +108,21 @@ def build_withjavascript_html(gallery, javascript_file, nojavascript_html_file):
         "nojavascript_html_file": nojavascript_html_file,
         "first_photo": photos_directory + gallery[2][0][0],
         "first_caption": gallery[2][0][1],
-        "aspect": gallery[3]}
+        "aspect": gallery[2][0][2]}
 
 
 def build_nojavascript_html(gallery, withjavascript_html_file):
     images=""
-    for count, (image, caption) in enumerate(gallery[2]):
+    for count, (image, caption, aspect) in enumerate(gallery[2]):
         images += nojavascript_image_template % {
             "photo": photos_directory + image,
+            "aspect": aspect,
             "caption": caption,
             "count": str(count + 1) + " of " + str(len(gallery[2]))}
     return nojavascript_html_template % {
         "title": gallery[0],
         "with_javascript_html": withjavascript_html_file,
-        "images": images,
-        "aspect": gallery[3]}
+        "images": images}
             
 
 def process_source(filename):
@@ -128,12 +130,12 @@ def process_source(filename):
     body = ElementTree.parse(filename).find("{http://www.w3.org/1999/xhtml}body")
     for div in body:
         files = []
-        retval.append([div.find("{http://www.w3.org/1999/xhtml}h1").text, div.get("id"), files, div.get("class")])
+        retval.append([div.find("{http://www.w3.org/1999/xhtml}h1").text, div.get("id"), files])
         for tag in div:
             if tag.tag == "{http://www.w3.org/1999/xhtml}h1":
                 continue
             elif tag.tag == "{http://www.w3.org/1999/xhtml}img":
-                files.append([tag.get("src"), ""])
+                files.append([tag.get("src"), "", tag.get("class", "landscape")])
             else:
                 files[-1][1] = files[-1][1] + clean_string(ElementTree.tostring(tag))
     return retval

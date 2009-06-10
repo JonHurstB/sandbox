@@ -1,15 +1,12 @@
-/*Galleries are vulnerable to IE float drop bug - therefore we will override 
-to use absolute positioning since we know that photo height is greater than 
-menu height*/
-
-#content img.gallery
+#content.gallery img
 {
+    position:relative;
     margin:0;
     border:solid gray 2px;
     z-index:101;
 }
 
-#content #buttonbar
+#content.gallery #buttonbar
 {
     position:relative;/*IE6 fix*/
     top:0;/*IE6 fix*/
@@ -18,16 +15,17 @@ menu height*/
     clear:both;
     white-space:nowrap;
     text-align:right;
+    z-index:102;
 }
 
-#content.portrait img.gallery
+#content.gallery img.portrait
 {
-    margin-left:50px;
+    left:75px;
 }
 
-#content.portrait #buttonbar
+#content.gallery #buttonbar.portrait
 {
-    width:500px;
+    width:525px;
 }
 
 #buttonbar li
