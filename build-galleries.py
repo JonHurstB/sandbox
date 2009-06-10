@@ -67,7 +67,7 @@ nojavascript_html_template = """\
     <link rel="stylesheet" href="stylesheets/styles.css" type="text/css" />
     <link rel="stylesheet" href="stylesheets/galleries.css" type="text/css" />
     <script type="text/javascript">
-      window.location="%(with_javascript_html)s"
+      window.location.replace(\"%(with_javascript_html)s\")
     </script>
   </head>
   <body>
