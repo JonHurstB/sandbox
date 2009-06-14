@@ -57,10 +57,12 @@ def build_node_pages(element):
 if __name__ == "__main__":
     structure, iddict = cElementTree.XMLID(file(structure_page).read())
     nav = iddict["navigation"].find("{http://www.w3.org/1999/xhtml}ul")
+    #create the node pages
     build_node_pages(nav)
     #create the site map
     print "Creating", site_dir + "sitemap"
     file(site_dir + "sitemap", "w").write(sitemap.sitemap(nav))
+    #create the html pages
     for f in glob.glob(source_dir + "*.html"):
         process_nodes(iddict["navigation"].find("{http://www.w3.org/1999/xhtml}ul"), os.path.basename(f))
         s = file(f).read()
