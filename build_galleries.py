@@ -147,16 +147,19 @@ def clean_string(str):
         'html:', "").rstrip()
 
 
+def main():
+    for gallery in process_source(source):
+        print "Building", gallery[0]
+        javascript_file = gallery_prefix + gallery[1] + ".js"
+        nojavascript_html_file = gallery_prefix + gallery[1] + ".nojs.html"
+        withjavascript_html_file = gallery_prefix + gallery[1] + ".html"
+        open(script_directory + javascript_file, "w").write(
+            build_javascript(gallery))
+        open(pages_directory + nojavascript_html_file, "w").write(
+            build_nojavascript_html(gallery, withjavascript_html_file))
+        open(pages_directory + withjavascript_html_file, "w").write(
+            build_withjavascript_html(gallery, javascript_file, nojavascript_html_file))
 
-for gallery in process_source(source):
-    print "Building", gallery[0]
-    javascript_file = gallery_prefix + gallery[1] + ".js"
-    nojavascript_html_file = gallery_prefix + gallery[1] + ".nojs.html"
-    withjavascript_html_file = gallery_prefix + gallery[1] + ".html"
-    open(script_directory + javascript_file, "w").write(
-        build_javascript(gallery))
-    open(pages_directory + nojavascript_html_file, "w").write(
-        build_nojavascript_html(gallery, withjavascript_html_file))
-    open(pages_directory + withjavascript_html_file, "w").write(
-        build_withjavascript_html(gallery, javascript_file, nojavascript_html_file))
 
+if __name__ == "__main__":
+    main()
